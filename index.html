@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="text" placeholder="Introduzca el texto.." class="input" />
+        <div class="opt_inputs_container">
+            <input type="number" id="width" placeholder="ancho (opcional)" class="input opt_input" />
+            <input type="number" id="height" placeholder="alto (opcional)" class="input opt_input" />
+        </div>
+        <button type="button" onclick="generateQR()">Generar QR</button>
+        <div id="qr-image"><span class="error"></span><br/><img src="" id="img" /></div>
+        <p class="creator">Creado por :<a href="https://portfolioantonioheredia.netlify.app/" target="_blank">Antonio Heredia</a></p>
+    </div>
+    <script src="./main.js"></script>
+</body>
+</html>
