@@ -1,19 +1,22 @@
 function generateQR() {
-    document.querySelector("#qr-image").style.display = "block";
-    let QRtext = document.querySelector("#text").value;
-    let { value: QRwidth } = document.querySelector("#width");
-    let { value: QRheight } = document.querySelector("#height");
-    if(QRtext.trim().length == 0) {
-        document.querySelector("#qr-image .error").innerHTML = "Porfavor introduzca los datos";
-        document.querySelector("#qr-image .error").style.color="red";
-        document.querySelector("#img").style.display = "none";
+    // Muestra la sección donde estará el QR
+    const qrImageDiv = document.querySelector("#qr-image");
+    const qrText = document.querySelector("#text").value;  // Cambié "texto" a "text"
+    const qrWidth = document.querySelector("#width").value || 240;
+    const qrHeight = document.querySelector("#height").value || 240;
+    const qrImg = document.querySelector("#img");
+    const errorMessage = document.querySelector("#qr-image .error");
+
+    if (qrText.trim().length === 0) {
+        errorMessage.innerHTML = "Por favor, introduzca los datos";
+        errorMessage.style.color = "red";
+        qrImg.style.display = "none";
     } else {
-        document.querySelector("#img").style.display = "block";
-        document.querySelector("#qr-image .error").innerHTML = "";
-        document.querySelector("#img").src = `gi/?size=${getDimension(QRwidth)}x${getDimension(QRheight)}&data=${QRtext}`;
+        qrImg.style.display = "block";
+        errorMessage.innerHTML = "";
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=${qrWidth}x${qrHeight}&data=${encodeURIComponent(qrText)}`;
     }
+
+    qrImageDiv.style.display = "block";
 }
 
-function getDimension(dimension){
-    return dimension.length === 0 ? 240 : dimension
-}
